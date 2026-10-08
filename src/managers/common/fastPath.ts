@@ -162,7 +162,6 @@ export async function tryFastPathGet(opts: FastPathOptions): Promise<FastPathRes
                     `[${opts.label}] Fast path resolve failed for '${persistedPath}', falling back to full init:`,
                     err,
                 );
-                await opts.clearPersistedPath?.(scope);
                 await opts.clearPersistedPath?.(undefined);
             }
         } else {
@@ -197,6 +196,7 @@ export async function tryFastPathGet(opts: FastPathOptions): Promise<FastPathRes
                     `[${opts.label}] Fast path resolve failed for '${persistedPath}', falling back to full init:`,
                     err,
                 );
+                await opts.clearPersistedPath?.(scope);
             }
         } else {
             traceVerbose(`[${opts.label}] Fast path: no persisted path, falling through to slow path`);
